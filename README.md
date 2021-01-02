@@ -31,6 +31,14 @@
 * `server.js` 파일 생성
 * `npm install -g nodemon` or `yarn add global nodemon`
     * 보안 오류가 뜨는 경우(window 10): powershell - 우클릭 관리자권한으로 - `executionpolicy` - `set-executionpolicy unrestricted` - `y`
+* `npm install body-parser` or `yarn add body-parser`
+```
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: true}));
+```
+
+
+## Node 시작
 ```
 const express = require('express');
 const app = express();
@@ -41,5 +49,20 @@ app.listen();
 ```
 app.get('/example', function(요청, 응답){
   응답.send('반갑습니다.');
+});
+```
+## 서버에 데이터를 보내는 법
+* `<form action="/add" method="POST">`
+* body-parser 설치 `npm install body-parser` or `yarn add body-parser`
+```
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: true}));
+```
+* `<input type="text" class="form-control" id="todo" name="title">` `name=""` 속성 필요
+```
+app.post('/add', function(req, res){
+  res.send('전송완료');
+  console.log(req.body.title);
+  console.log(req.body.date);
 });
 ```

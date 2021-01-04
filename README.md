@@ -36,6 +36,8 @@
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 ```
+* `npm install mongodb`
+* `npm install ejs`
 
 
 ## Node 시작
@@ -115,3 +117,26 @@ facebook.com/natgeo/photoes
 7. `npm install mongodb`
 8. `server.js` `const MongoClient = require('mongodb').MongoClient;`
 9. `MongoClient.connect('복사해두었던URL', function(err, client){});`
+```
+MongoClient.connect('mongodb+srv://kgj:여기에비번적기@cluster0.yepff.mongodb.net/<dbname>?retryWrites=true&w=majority', function(err, client){
+  // db 연결이 되면 코드 실행
+  if(err) return console.log(err);
+  app.listen(8080, function(){
+    console.log('listening on 8080');
+  });
+});
+```
+10. `collection` - `add my own data` - database name (ex_ todoapp) - collection name (ex_ post)
+11. `var db` `db = client.db('todoapp');` 데이터베이스 (폴더) 명
+```
+  db.collection('post').insertOne('저장할 데이터', function(err, result){
+    console.log('저장완료')
+  });
+```
+
+```
+과제_ 
+클라이언트가 /add 라는 경로로 post 요청을 하면, 
+데이터 2개(날짜, 제목)을 보내줌.
+이 때, 'post'라는 이름을 가진 collection에 두개의 데이터 저장
+```

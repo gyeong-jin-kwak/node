@@ -7,11 +7,22 @@ const MongoClient = require('mongodb').MongoClient;
 // app.listen(8080, function(){
 //   console.log('listening on 8080');
 // });
+
+var db;
 MongoClient.connect('mongodb+srv://kgj:a48624862@cluster0.yepff.mongodb.net/<dbname>?retryWrites=true&w=majority', function(err, client){
+  // 에러처리
+  if(err) return console.log(err);
+
   // db 연결이 되면 코드 실행
   app.listen(8080, function(){
     console.log('listening on 8080');
   });
+
+ 
+  db = client.db('todoapp');
+  // db.collection('post').insertOne({name: 'kgj', age: 29}, function(err, result){
+  //   console.log('저장완료')
+  // }); todoapp 이라는 폴더 안에 있는 post 라는 엑셀 (mongodb에서 제작)
 });
 // mongodb+srv://kgj:a48624862@cluster0.yepff.mongodb.net/<dbname>?retryWrites=true&w=majority
 
@@ -36,4 +47,8 @@ app.post('/add', function(req, res){
   res.send('전송완료');
   console.log(req.body.title);
   console.log(req.body.date);
-});
+
+  db.collection('post').insertOne({title: req.body.title, date: req.body.date}, function(err, result){
+    console.log('저장완료')
+  })
+});  

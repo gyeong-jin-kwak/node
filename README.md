@@ -140,3 +140,32 @@ MongoClient.connect('mongodb+srv://kgj:여기에비번적기@cluster0.yepff.mong
 데이터 2개(날짜, 제목)을 보내줌.
 이 때, 'post'라는 이름을 가진 collection에 두개의 데이터 저장
 ```
+
+## EJS
+* `npm install ejs`
+* `app.set('view engine', 'ejs');`
+* 확장자명 변경 `list.ejs`
+    * html 과 모두 같음
+    * 서버 데이터를 ejs 문법을 사용해서 삽입 가능
+* `<h2>title : <%=  %></h2>`
+```
+app.get('/list', function(req, res){
+  res.render('list.ejs');
+});
+```
+* ejs 파일은 views 라는 폴더 안에 위치해야한다 (에러의 원인)
+* `db.collection('post').find().toArray(function(err, result));` : 모든 데이터를 가지고 옴
+* 위코드 에러 (옛날 코드) / 아래 코드 적용 
+```
+const MongoClient = require('mongodb').MongoClient;
+const client = new MongoClient('mongodb+srv://kgj:a48624862@cluster0.yepff.mongodb.net/<dbname>?retryWrites=true&w=majority', {useUnifiedTopology: true});
+
+client.connect().then((client)=>{
+  var db = client.db('todoapp')
+  db.collection('post').find().toArray(function (err, result) {
+      if (err) throw err
+      console.log(result);
+  })
+})
+```
+* ejs 파일 안에서 javascript 코드는 `<%= %>` 문법 필요 참고_ `list.ejs`

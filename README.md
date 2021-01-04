@@ -99,3 +99,19 @@ facebook.com/natgeo/photoes
     * 캐싱을 위한 버전 같은 것도 관리를 잘해야 함 
 5. Layered System
 6. Code on Demand
+
+## MongoDB
+* 관계형 데이터베이스 (MySQL, MariaDB, Oracle, MS SQL Server) 와는 다름
+* No SQL 
+1. mongodb atlas 검색
+2. 가입- free cluster 선택
+3. aws(상관 x) - singapore 선택 (미국 같은 나라 선택하면 전송이 오래 걸림)
+4. 만들고 난 후 **Database Access** - id pw 생성 (누가 데이터베이스에 접근 가능하게 할 것인지)
+    * kgj / a4... / atlas admin 택
+5. **Network Access** 어떤 ip를 갖은 사람이 접근할 수 있는지
+    * 모든 ip에서 접근 가능하도록 or 현재 컴퓨터 ip에서 접근 가능하도록 둘 중 택1
+6. **Clusters** `CONNECT` `Connect Your Application`, connection string 복사해놓기
+    * `mongodb+srv://kgj:여기에비번적기@cluster0.yepff.mongodb.net/<dbname>?retryWrites=true&w=majority`
+7. `npm install mongodb`
+8. `server.js` `const MongoClient = require('mongodb').MongoClient;`
+9. `MongoClient.connect('복사해두었던URL', function(err, client){});`

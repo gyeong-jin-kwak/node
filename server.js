@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 const MongoClient = require('mongodb').MongoClient;
+const { request } = require('express');
 const client = new MongoClient('mongodb+srv://kgj:a48624862@cluster0.yepff.mongodb.net/<dbname>?retryWrites=true&w=majority', {useUnifiedTopology: true});
 app.set('view engine', 'ejs');
 
@@ -73,11 +74,22 @@ app.post('/add', function(req, res){
     console.log(result.totalPost);
     let totalPost_ = result.totalPost;
 
-    db.collection('post').insertOne({id_: totalPost_ + 1 , title: req.body.title, date: req.body.date}, function(err, result){
+    db.collection('post').insertOne({_id: totalPost_ + 1 , title: req.body.title, date: req.body.date}, function(err, result){
       console.log('저장완료');
       db.collection('counter').updateOne({name: '게시물 개수'}, {$inc: {totalPost: 1}}, function(err, result){
         if(err){return console.log(err)}
       });
     });
   });
-});  
+});
+
+app.delete('/delete', function(req, res){
+  console.log(req.body);
+  req.body._id = parseInt(req.body._id);
+
+  db.collection('post').deleteOne(req.body, function(err, result){
+    console.log('삭제완료');
+    res.status(200).send({ message: '성공했습니다.' });
+    // res.status(400).send({ message: '실패했습니다.' });
+  })
+});

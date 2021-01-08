@@ -12,6 +12,8 @@
 }
 
 .list-container .list {
+  width: 50%;
+  min-width: 500px;
   margin-top: 2rem;
   padding: 0;
 }
@@ -25,5 +27,14 @@
 
 .list-container .list-item__date {
   margin-left: auto;
+}
+
+.list-container .list-item .label {
+  color: blueviolet;
+}
+
+.list-container .btn-delete {
+  margin-left: 10px;
+  border: none;
 }
 /*# sourceMappingURL=common.css.map */

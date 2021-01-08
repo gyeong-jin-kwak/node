@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 ```
 * `npm install mongodb`
 * `npm install ejs`
-
+* `npm install jqery`
 
 ## Node 시작
 ```
@@ -147,6 +147,10 @@ MongoClient.connect('mongodb+srv://kgj:여기에비번적기@cluster0.yepff.mong
 * 수정 operator
     * `$set: {totalPost: 바꿀값}`
     * `$inc: {totalPost: 기존에 더해줄 값}`
+
+### data 삭제 방법 
+* `method="POST"` `method="GET"` 만 가능
+* Javascript Ajax 사용
 
 ## EJS
 * `npm install ejs`

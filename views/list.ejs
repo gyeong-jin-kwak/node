@@ -47,19 +47,51 @@
       </div>
     </nav>
     <div class="list-container">
-      <h1 class="list-title">할 일 List</h1>
+      <h1 class="list-title">To Do List</h1>
       <ul class="list">
         <% for(var i = 0; i < posts_.length; i++){ %>
 
           <li class="list-item">
-            <strong class="list-item__title">title : <%= posts_[i].title %></strong>
+            <strong class="list-item__title"><span class="label">to do /</span> <%= posts_[i].title %></strong>
             <!--  <%=  %> -->
             <span class="list-item__date"><%= posts_[i].date %></span>
+            <button class="btn-delete" data-id="<%= posts_[i]._id %>">x</button>
           </li>
         <% } %>
       </ul>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+      $('.btn-delete').click(function(e){
+        let btnNum = e.target.dataset.id;
+        let this_ = $(this);
+
+        $.ajax({
+
+          method: 'DELETE',
+          url: '/delete',
+          data: {_id: btnNum}
+
+        }).done(function(result){ 
+
+          console.log('성공했어요');
+          // 페이지를 강제로 새로고침 reload
+          // 클릭된 li 요소 제거
+          this_.parent('li').fadeOut();
+
+        }).fail(function(a, b, c){
+
+          console.log('실패했어요');
+          console.log(a, b, c);
+          //a_ xhr 
+          //b_ textStatus : 응답코드
+          //c_ errorThrown : 에러 메세지
+
+        })
+      })
+    </script>
   </body>
 </html>

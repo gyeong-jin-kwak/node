@@ -3,3 +3,27 @@
 .board {
   padding: 2rem;
 }
+
+.list-container {
+  $root: '.list'; 
+  padding: 2rem;
+
+  #{$root}-title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  #{$root} {
+    margin-top: 2rem;
+    padding: 0;
+  }
+
+  #{$root}-item {
+    display: flex;
+    margin-top: 0.5rem;
+
+    &__date {
+      margin-left: auto;
+    }
+  }
+}

@@ -1,4 +1,29 @@
 .board {
   padding: 2rem;
 }
+
+.list-container {
+  padding: 2rem;
+}
+
+.list-container .list-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.list-container .list {
+  margin-top: 2rem;
+  padding: 0;
+}
+
+.list-container .list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0.5rem;
+}
+
+.list-container .list-item__date {
+  margin-left: auto;
+}
 /*# sourceMappingURL=common.css.map */

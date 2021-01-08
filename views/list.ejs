@@ -8,6 +8,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="../css/common.css">
+
     <title>Node</title>
   </head>
   <body>
@@ -44,19 +46,19 @@
         </div>
       </div>
     </nav>
-  
-    <h1>할 일 List</h1>
-    <ul>
+    <div class="list-container">
+      <h1 class="list-title">할 일 List</h1>
+      <ul class="list">
+        <% for(var i = 0; i < posts_.length; i++){ %>
 
-      <% for(var i = 0; i < posts_.length; i++){ %>
-
-        <li>
-          <h2>title : <%= posts_[i].title %></h2>
-          <!--  <%=  %> -->
-          <div>date : <%= posts_[i].date %></div>
-        </li>
-      <% } %>
-    </ul>
+          <li class="list-item">
+            <strong class="list-item__title">title : <%= posts_[i].title %></strong>
+            <!--  <%=  %> -->
+            <span class="list-item__date"><%= posts_[i].date %></span>
+          </li>
+        <% } %>
+      </ul>
+    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   </body>

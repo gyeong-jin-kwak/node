@@ -69,7 +69,15 @@ app.post('/add', function(req, res){
   console.log(req.body.title);
   console.log(req.body.date);
 
-  db.collection('post').insertOne({title: req.body.title, date: req.body.date}, function(err, result){
-    console.log('저장완료')
-  })
+  db.collection('counter').findOne({name: '게시물 개수'}, function(err, result){
+    console.log(result.totalPost);
+    let totalPost_ = result.totalPost;
+
+    db.collection('post').insertOne({id_: totalPost_ + 1 , title: req.body.title, date: req.body.date}, function(err, result){
+      console.log('저장완료');
+      db.collection('counter').updateOne({name: '게시물 개수'}, {$inc: {totalPost: 1}}, function(err, result){
+        if(err){return console.log(err)}
+      });
+    });
+  });
 });  

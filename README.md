@@ -140,6 +140,13 @@ MongoClient.connect('mongodb+srv://kgj:여기에비번적기@cluster0.yepff.mong
 데이터 2개(날짜, 제목)을 보내줌.
 이 때, 'post'라는 이름을 가진 collection에 두개의 데이터 저장
 ```
+### data 고유 id 생성
+* `Collection` - 추가 `counter` - `Insert Document` 
+*  `totalPost`에 0 삽입 `Int32`
+* `counter` 에서 `name: '게시물 개수'`를 찾아서 +1 넣기
+* 수정 operator
+    * `$set: {totalPost: 바꿀값}`
+    * `$inc: {totalPost: 기존에 더해줄 값}`
 
 ## EJS
 * `npm install ejs`

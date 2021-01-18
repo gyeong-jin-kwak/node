@@ -180,3 +180,4 @@ client.connect().then((client)=>{
 })
 ```
 * ejs 파일 안에서 javascript 코드는 `<%= %>` 문법 필요 참고_ `list.ejs`
+* ejs 는 `sendFile` 이 아닌 `render` 해주어야 함

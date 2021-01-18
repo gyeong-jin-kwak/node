@@ -61,8 +61,9 @@ app.get('/list', function(req, res){
   });
 });
 
-// ** css 참조 **
-app.use('/css', express.static(__dirname+"/css"));
+// ** css 참조 - 미들웨어 **
+// app.use('/css', express.static(__dirname+"/css"));
+app.use('/public', express.static('public'));
 
 // ** /add 경로로 POST 요청을 하면 ~ 실행 **
 app.post('/add', function(req, res){

@@ -83,6 +83,7 @@ app.post('/add', function(req, res){
   });
 });
 
+// 삭제기능 구현
 app.delete('/delete', function(req, res){
   console.log(req.body);
   req.body._id = parseInt(req.body._id);
@@ -92,4 +93,15 @@ app.delete('/delete', function(req, res){
     res.status(200).send({ message: '성공했습니다.' });
     // res.status(400).send({ message: '실패했습니다.' });
   })
+});
+
+// /detail로 접속했을때 detail.ejs 보여줌
+// :id 어떠한 문자열로 입력시 들어가도록 
+// _id: req.params.id 파라미터 중 :id 라는 뜻
+app.get('/detail/:id', function(req, res){
+  db.collection('post').findOne({_id: parseInt(req.params.id)}, function(err, result){
+    console.log(result);
+    res.render('detail.ejs', { data_: result });
+  });
+  // res.render('detail.ejs', {});
 });
